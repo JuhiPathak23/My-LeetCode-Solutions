@@ -1,0 +1,29 @@
+class Solution {
+public:
+    long long fuelcost(int node,vector<int>adj[],vector<int>&vis,int seats,long long &ans){
+        vis[node]=1;
+        long long c=1;
+        for(auto x:adj[node]){
+            if(!vis[x])
+                c+=fuelcost(x,adj,vis,seats,ans);
+        }
+         if(node!=0){
+             long long cars=(c)/seats;
+            if(c%seats)cars++;
+             ans+=cars;
+            }
+        return c;
+    }
+    long long minimumFuelCost(vector<vector<int>>& roads, int seats) {
+        int n=roads.size();
+        vector<int>adj[n+1];
+        for(auto x:roads){
+            adj[x[0]].push_back(x[1]);
+            adj[x[1]].push_back(x[0]);
+        }
+        vector<int>vis(n+1,0);
+        long long res=0;
+        fuelcost(0,adj,vis,seats,res);
+        return res;
+    }
+};
