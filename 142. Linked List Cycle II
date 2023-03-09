@@ -1,0 +1,16 @@
+class Solution {
+public:
+    ListNode *detectCycle(ListNode *head) {
+        set<ListNode*>s;
+        int n=0;
+        ListNode* p=head;
+        while(p!=NULL){
+            s.insert(p);
+            n++;
+            if(s.size()!=n)
+                return p;
+            p=p->next;
+        }
+        return NULL;
+    }
+};
