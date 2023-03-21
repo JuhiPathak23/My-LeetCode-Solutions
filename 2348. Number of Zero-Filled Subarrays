@@ -1,0 +1,16 @@
+class Solution {
+public:
+    long long zeroFilledSubarray(vector<int>& nums) {
+        long long n=0;
+        int i=0,j=0;
+        while(i<nums.size()){
+            if(nums[i]!=0){
+                j=++i;
+                continue;
+            }
+            n=n+i-j+1;
+            i++;
+        }
+        return n;
+    }
+};
