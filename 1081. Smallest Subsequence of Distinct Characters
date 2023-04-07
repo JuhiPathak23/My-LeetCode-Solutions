@@ -1,0 +1,10 @@
+class Solution:
+    def smallestSubsequence(self, s: str) -> str:
+        d={val:key for key,val in enumerate(s)}
+        stack=[]
+        for key,val in enumerate(s):
+            if val not in stack:
+                while stack and stack[-1]>val and d[stack[-1]]>key:
+                    stack.pop()
+                stack.append(val)
+        return "".join(stack)
